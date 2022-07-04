@@ -2,6 +2,7 @@
   "name": "drink-water-wc",
   "version": "0.2.0",
   "private": true,
+  "homepage": "https://simply-none.github.io/tips",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
