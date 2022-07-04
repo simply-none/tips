@@ -1,0 +1,458 @@
+// shezhi设置高度，使得能够获取自动高度
+html,
+#app {
+  height: 100%;
+  // font-family: '宋体';
+}
+body {
+  height: 100%;
+  margin: 0;
+  /* padding: 8px; */
+  box-sizing: border-box;
+}
+#app {
+  &>*:first-child:not(.app-child-height-not-100) {
+    height: 100%;
+    // padding: 8px;
+    box-sizing: border-box;
+  }
+}
+
+// 分页
+.el-pagination {
+  margin: 12px 0 4px;
+}
+
+// 品评鼠标手势
+.comment-edit-button {
+  cursor: pointer;
+  transition-property:all;
+  transition-duration:0.6s;
+
+  &:hover {
+    background-color: #409EFF;
+    // 颜色过渡
+    transition-property:all;
+    transition-duration:0.6s;
+    .el-button {
+      color: white;
+    }
+  }
+}
+
+// 页面刷新
+.refresh {
+  font-weight: 900;
+  color: #409eff;
+  padding-right: 6px;
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
+
+@mixin scrollbar($width) {
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(230, 230, 230, 0.3);
+    background-color: #ffffff;
+  }
+
+  &::-webkit-scrollbar {
+    width: $width;
+    height: $width;
+    background-color: #dadada;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #dadada;
+    // background-image: -webkit-linear-gradient(0deg,
+    //                   rgba(255, 255, 255, 0.5) 25%,
+    //                     transparent 25%,
+    //                     transparent 50%,
+    //                   rgba(255, 255, 255, 0.5) 50%,
+    //                   rgba(255, 255, 255, 0.5) 75%,
+    //                     transparent 75%,
+    //                     transparent)
+  }
+  &::-webkit-scrollbar-thumb:horizontal {
+    background-color: #dadada;
+    // background-image: -webkit-linear-gradient(90deg,
+    //                   rgba(255, 255, 255, 0.5) 25%,
+    //                     transparent 25%,
+    //                     transparent 50%,
+    //                   rgba(255, 255, 255, 0.5) 50%,
+    //                   rgba(255, 255, 255, 0.5) 75%,
+    //                     transparent 75%,
+    //                     transparent)
+  }
+}
+
+* {
+  @include scrollbar(7px);
+}
+
+// 所有表格的滚动条
+.el-table__body-wrapper {
+  @include scrollbar(7px);
+}
+
+// 搜索界面背景区分
+.search-item--bgcolor {
+  margin: 0;
+  padding: 10px 0;
+  
+  &:nth-child(odd) {
+    background-color: #fafafa;
+    .el-input__inner {
+      background-color: #fafafa;
+      &:hover {
+        background-color: #f5f7fa;
+      }
+    }
+  }
+  &:hover {
+    background-color: #f5f7fa;
+  }
+}
+
+// 弹出信息宽度
+.el-tooltip__popper.is-light {
+  max-width: 20%;
+}
+
+// 设置表格行样式
+.sitir-table {
+  &-row {
+    &:hover {
+      z-index: 1000;
+    }
+  }
+  &__title {
+    font-weight: 500;
+    color: #636569;
+  }
+}
+
+// 颜色
+.sitir-red {
+  color: $color-word-red;
+}
+.sitir-blue {
+  color: #67C23A;
+}
+
+// 图标大小
+.sitir-icon--24 {
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.input-with-select {
+  &.el-input-group {
+    float: right;
+    max-width: 300px;
+  }
+  .el-input-group__append {
+    border: 1px solid #8ac3ff;
+    border-left: none;
+    padding: 0 12px;
+    cursor: pointer;
+    color: white;
+    background: #2b91fa;
+    &:hover {
+      background-color: #0783ff;
+    }
+  }
+  .el-input__inner {
+    color: #d7eaff;
+    border: 1px solid #8ac3ff;
+    background: transparent;
+    border-right: none;
+    padding: 0 12px;
+    &::-webkit-input-placeholder {
+      color: #bcdbff;
+    }
+  }
+}
+
+
+// sample
+
+// 标题标准------开始
+.s-t-title {
+  &--page {
+    font-size: 16px;
+    font-weight: 500;
+  }
+}
+
+// 标题标准------结束
+
+// 按钮标准------开始
+
+.el-button {
+  &--medium {
+    padding: 10px 18px;
+  }
+  &--small {
+    padding: 9px 16px;
+  }
+}
+
+.el-button {
+  &.is-disabled {
+    color: #999999;
+    background-color: #F2F2F2;
+    border-color: #F2F2F2;
+    &:hover,
+    &:active,
+    &:focus {
+      color: #999999;
+      background-color: #F2F2F2;
+      border-color: #F2F2F2;
+    }
+  }
+}
+
+.btn {
+  &-prev,
+  &-next {
+    text-align: center;
+  }
+  // 按钮组外框
+  &-group-wrapper,
+  &-group {
+    display: inline-flex;
+    height: fit-content;
+    flex-flow: row wrap;
+  }
+  // 按钮组
+  &-group {
+    width: fit-content;
+    // padding-bottom: 6px;
+    &-child+&-child {
+      margin-left: 3px;
+    }
+
+  }
+  // 按钮组后面的单按钮/按钮组
+  // 添加按钮
+  &-add {
+    color: white;
+    background-color: red;
+    border-color: red;
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: #ff6a6a;
+      border-color: #ff6a6a;
+    }
+  }
+  // 删除按钮
+  &-del {
+    color: red;
+    &:hover,
+    &:active,
+    &:focus {
+      color: rgb(255, 52, 52);
+    }
+  }
+  // 朴素按钮
+  &-plain {
+    color: #000;
+    background-color: #afafaf;
+    border-color:#afafaf;
+    height: fit-content;
+    &:hover,
+    &:active,
+    &:focus {
+      color: #000;
+      background-color: #c7c7c7;
+      border-color: #c7c7c7;
+    }
+    .el-button {
+      color: #000;
+      background-color: #afafaf;
+      border-color:#afafaf;
+      &:hover,
+      &:active,
+      &:focus {
+        color: #000;
+        background-color: #c7c7c7;
+        border-color: #c7c7c7;
+      }
+      &.is-disabled {
+        color: #999999;
+        background-color: #F2F2F2;
+        border-color: #F2F2F2;
+      }
+    }
+  }
+
+  // 启用状态按钮
+  &-active {
+    &-0 {
+      background-color: #F2F2F2 !important;
+      color: #999999;
+      [class^=el-icon-] {
+        color: red;
+      }
+    }
+    &-1 {
+      background-color: #F2F2F2 !important;
+      color: #999999;
+      [class^=el-icon-] {
+        color: #00cc00;
+      }
+    }
+  }
+
+  &-only-icon {
+    [class*=el-icon-]+span {
+      margin-left: 0px;
+    }
+  }
+
+  // 弹框
+  &--dialog-footer {
+    &+& {
+      margin-left: 24px;
+    }
+    min-width: 75px;
+  }
+}
+
+// 按钮标准------结束
+
+.s-t-dialog-alert {
+  position: fixed;
+  top: 55px;
+  left: 0;
+  z-index: 1;
+}
+
+.s-t-form-label-fixed {
+  .el-form-item__label {
+    // 这个是为了适应定宽下，表单label可换行
+    // line-height: 1;
+  }
+}
+
+.line-height-fixed {
+  .el-form-item__label {
+    // 这个是为了适应定宽下，表单label可换行
+    line-height: 20px;
+  }
+}
+
+.el-divider--horizontal {
+  width: 100%;
+  margin: 0;
+}
+
+.s-t-card-bg {
+  background-color: #fff;
+}
+
+// 弹框------开始
+.el-dialog{
+  &__header {
+    padding: 0;
+  }
+  &__title {
+    padding: 12px 20px;
+    display: inline-block;
+    font-size: 16px;
+  }
+  &__headerbtn {
+    padding: 12px 16px;
+    top: 0;
+    right: 0;
+  }
+}
+
+// 嵌套弹框
+// .inner-dialog {
+//   margin-top: 0px !important;
+//   width: 60% !important;
+//   max-height: 90%;
+//   margin-bottom: unset;
+//   max-width: 520px;
+// }
+
+// 弹框------结束
+
+.s-t-dialog--inner-tip {
+  vertical-align: middle;
+}
+
+// 表格标准------开始
+.el-table--enable-row-hover  .el-table__body {
+  tr.current-row>td {
+    background-color: #fff;
+  }
+  tr:hover>td {
+    cursor: pointer;
+    background-color: #FFCC99;
+  }
+}
+.el-table {
+  &__empty-text {
+    font-size: 14px;
+  }
+  // 表头和标题对齐
+  th.gutter {
+    display: table-cell !important;
+  }
+}
+.s-t-table {
+  // 列表的表格（单表）
+  &--list {
+    // 重设表格行高度
+    th,
+    td {
+      padding: 0 !important;
+    }
+    th {
+      font-size: 14px;
+      font-weight: 400;
+      .cell {
+        height: 28px;
+        line-height: 28px;
+      }
+    }
+    td {
+      font-size: 14px;
+      padding: 3px 0;
+    }
+  }
+  &__item--show {
+    // padding: 3px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+    height: 20px;
+    // line-height: 1;
+  }
+
+  // 弹框的表格
+  // todo
+}
+
+// 表格标准------结束 
+
+// 表单：查询样式------------------开始
+
+// 表单：查询样式------------------结束
+
+// 下拉多选样式-全局设置（禁止事件，仅当展示用）
+.billStatusArr,
+.chkApplyStatusArr,
+.chkApplyStatus {
+  .el-checkbox {
+    pointer-events: none;
+  }
+}

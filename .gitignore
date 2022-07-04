@@ -1,0 +1,29 @@
+# 自动化保存git代码
+gitCommit.sh
+.history/
+nohup.out
+
+.DS_Store
+node_modules
+
+# local env files
+
+# 不同环境生成的构建文件, 其中dist（生产）、pre（预发布）、dev（开发）
+dist
+dev
+pre
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

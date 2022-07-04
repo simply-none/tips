@@ -1,0 +1,184 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+sub,
+sup,
+tt,
+var,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing:border-box;/* 方便设计稿取值使用 */
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    -webkit-tap-highlight-color: transparent;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+input, textarea, select, button {
+  text-rendering: auto;
+  color: initial;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  margin: 0em;
+  font: 400 14px "Microsoft YaHei";
+}
+
+html,body {
+  width:100%;
+  height:100%;
+  font-size: 14px;
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+  scroll-behavior:smooth;
+  overflow-x: hidden;
+}
+
+#app {
+  width:100%;
+  height:100%;
+  position: relative;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  display: block;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  cursor:pointer;
+}
+
+a[href^="javascript"]{-webkit-touch-callout: none;}
+
+img{
+  display: block;
+}
+
+input {
+  outline: none;
+}
+
+.overflow {
+  overflow: hidden;
+}
+
+.cursor{
+  cursor:pointer;
+}
+
+.clear {
+  clear: both;
+  height: 1px;
+  width: 100%;
+}
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}  
+   
+/*超出省略号--需要设置宽度*/
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
