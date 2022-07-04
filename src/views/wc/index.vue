@@ -1,13 +1,13 @@
 <template>
-  <div class="water" >
+  <div class="wc" >
     <el-card @click.native="stop" :class="getClass">
-      <div class="water-diff">
-        <div class="water-diff-label">
-          距离上次喝水已过去：
+      <div class="wc-diff">
+        <div class="wc-diff-label">
+          距离上次上厕所已过去：
         </div>
-        <div class="water-diff-time" :class="getClass">{{ this.diffTime }}</div>
-        <div>秒</div></div>
-      <div class="water-diff">
+        <div class="wc-diff-time" :class="getClass">{{ this.diffTime }}</div>
+        <div>分</div></div>
+      <div class="wc-diff">
         {{ this.lastTime }}
       </div>
     </el-card>
@@ -29,18 +29,18 @@ export default {
       times: [],
       currentTime: '',
       lastTime: '',
-      diffTime: ''
+      diffTime: '0'
     }
   },
   computed: {
     getClass () {
-      if (this.diffTime > 1200) {
-        return ['water-diff-time--red']
+      if (this.diffTime > 60) {
+        return ['wc-diff-time--red']
       }
-      if (this.diffTime > 1000) {
-        return ['water-diff-time--yellow']
+      if (this.diffTime > 90) {
+        return ['wc-diff-time--yellow']
       }
-      return ['water-diff-time--normal']
+      return ['wc-diff-time--normal']
     }
   },
   components: {
@@ -68,16 +68,16 @@ export default {
       this.timer = setInterval(() => {
         this.currentTime = dayjs().format('YYYY-MM-DD HH:mm:ss')
 
-        const diffTime = dayjs(new Date()).diff(dayjs(new Date(this.lastTime)), 'seconds')
+        const diffTime = dayjs(new Date()).diff(dayjs(new Date(this.lastTime)), 'minutes')
 
         this.diffTime = diffTime
       }, 1000)
     },
     async delNone () {
-      await db.water.where('time').equals('').delete()
+      await db.wc.where('time').equals('').delete()
     },
     getLastTime () {
-      db.water.where('id').above(0).last(data => {
+      db.wc.where('id').above(0).last(data => {
         if (!data || !data.time) {
           return false
         }
@@ -88,11 +88,11 @@ export default {
       if (time === '') {
         return false
       }
-      await db.water.add({
+      await db.wc.add({
         time: time
       })
 
-      const getData = await db.water.where('id').above(0).reverse().toArray()
+      const getData = await db.wc.where('id').above(0).reverse().toArray()
       this.times = getData
 
       this.getLastTime()
@@ -105,7 +105,7 @@ export default {
 .el-card {
   margin: 2em;
 }
-.water {
+.wc {
   padding: 1px 0;
   overflow: auto;
 
