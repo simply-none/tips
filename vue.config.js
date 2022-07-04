@@ -15,7 +15,7 @@ module.exports = {
   // 基本路径：默认情况下部署到域名根路径下，若部署到子路径中需使用它指定子路径
   // 比如www.baidu.com/child/， 则baseUrl: '/child/'
   // baseUrl: './', // vue-cli3.3以下版本使用
-  publicPath: './', // vue-cli3.3+新版本使用
+  publicPath: '/', // vue-cli3.3+新版本使用
   // dist为生产环境构建文件的目录
   outputDir: process.env.outputDir,
   // 放置生成的静态资源 (js、css、img、fonts) 的 (相对于 outputDir 的) 目录。
