@@ -5,17 +5,15 @@
         <div class="water-diff-label">
           距离上次喝水已过去：
         </div>
-        <div class="water-diff-time" :class="getClass">{{ this.diffTime }}</div>
-        <div>秒</div></div>
+        <template v-for="time in diffTimeStr">
+          <div :key="time.id" class="water-diff-time" :class="getClass">{{ time.val }}</div>
+          <div :key="time.id">{{ time.field }}</div>
+        </template>
+      </div>
       <div class="water-diff">
         {{ this.lastTime }}
       </div>
     </el-card>
-    <div class="wc-time-total">
-      <div v-for="time in times" :key="time.id">
-        {{ time.time }}
-      </div>
-    </div>
   </div>
 </template>
 
@@ -25,11 +23,13 @@ import { db } from 'utils/db.js'
 export default {
   data () {
     return {
+      t: '',
       timer: '',
       times: [],
       currentTime: '',
       lastTime: '',
-      diffTime: ''
+      diffTime: 0,
+      diffTimeStr: []
     }
   },
   computed: {
@@ -55,9 +55,9 @@ export default {
       if (this.timer) {
         clearInterval(this.timer)
         this.timer = ''
-        await this.getTime(this.currentTime)
         return true
       }
+      await this.getTime(this.currentTime)
       this.times = []
       this.setTime()
     },
@@ -65,10 +65,42 @@ export default {
       if (this.timer) {
         return false
       }
+
+      const timeStr = [
+        {
+          field: '日',
+          digit: 24 * 60 * 60
+        },
+        {
+          field: '时',
+          digit: 60 * 60
+        },
+        {
+          field: '分',
+          digit: 60
+        },
+        {
+          field: '秒',
+          digit: 1
+        }
+      ]
       this.timer = setInterval(() => {
         this.currentTime = dayjs().format('YYYY-MM-DD HH:mm:ss')
 
         const diffTime = dayjs(new Date()).diff(dayjs(new Date(this.lastTime)), 'seconds')
+        this.diffTimeStr = []
+
+        timeStr.reduce((prev, str) => {
+          const k = {
+            field: str.field,
+            yu: prev.yu % str.digit,
+            val: String(Math.floor(prev.yu / str.digit)).padStart(2, '0')
+          }
+          if (k.val > 0 || this.diffTimeStr.length > 0) {
+            this.diffTimeStr.push(k)
+          }
+          return k
+        }, { yu: diffTime })
 
         this.diffTime = diffTime
       }, 1000)
@@ -115,13 +147,11 @@ export default {
     /* justify-content: center; */
     align-items: flex-end;
     padding: 1em;
-    &-label {
-      color: #686868;
-    }
     &-time {
       color: rgb(62, 62, 62);
       font-family: serif;
       font-size: 3em;
+      padding: 0 3px;
       &--yellow {
         background: yellow;
         color: #020202;
@@ -131,6 +161,12 @@ export default {
         color: white;
         /* @extend .scale; */
       }
+    }
+    &-wapper {
+      display: flex;
+      flex-flow: row nowrap;
+      width: fit-content;
+      align-items: flex-end;
     }
   }
   &-time-total {
