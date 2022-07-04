@@ -9,7 +9,6 @@ node_modules
 # local env files
 
 # 不同环境生成的构建文件, 其中dist（生产）、pre（预发布）、dev（开发）
-dist
 dev
 pre
 
