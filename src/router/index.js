@@ -12,7 +12,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: 'hash',
   routes,
   // 路由跳转时，滚动到顶部，而非原先记忆的位置
   scrollBehavior (to, from, savedPosition) {
