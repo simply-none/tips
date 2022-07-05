@@ -143,7 +143,7 @@ export default {
 
   &-diff {
     display: flex;
-    flex-flow: row;
+    flex-flow: row wrap;
     /* justify-content: center; */
     align-items: flex-end;
     padding: 1em;
